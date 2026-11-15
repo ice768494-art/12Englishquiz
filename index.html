@@ -1,0 +1,1204 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12th English Vocabulary Timed Quiz</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Tone.js for subtle sound feedback -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .animate-shake {
+      animation: shake 0.35s ease-in-out;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.96); opacity: 0.7; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-pop {
+      animation: pop 0.25s ease-out forwards;
+    }
+    /* Custom scrollbar for review section */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-200 selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Header -->
+  <header class="w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-lg shadow-sm">
+          W
+        </div>
+        <div>
+          <h1 class="font-bold text-base sm:text-lg leading-tight tracking-tight">Way to Success • Vocab Master</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">12th English • Pages 284 & 285</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <!-- Sound Toggle -->
+        <button id="soundToggleBtn" onclick="toggleSound()" title="Toggle Sound Effects" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100/70 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <svg id="soundOnIcon" class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+          <svg id="soundOffIcon" class="w-5 h-5 text-slate-400 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button onclick="toggleDarkMode()" title="Toggle Theme" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100/70 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+          <svg class="w-5 h-5 hidden dark:block text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" />
+            <path stroke-linecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          </svg>
+          <svg class="w-5 h-5 block dark:hidden text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 w-full max-w-4xl mx-auto px-4 py-6 sm:py-8 flex flex-col justify-center">
+
+    <!-- ==================== 1. START / SETUP SCREEN ==================== -->
+    <section id="setupScreen" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-8 shadow-xl shadow-slate-200/40 dark:shadow-none animate-pop">
+      <div class="mb-6">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950/70 dark:text-indigo-300 border border-indigo-200/70 dark:border-indigo-800/70 mb-2">
+          <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+          Complete 167-Word Question Bank
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Configure Your Timed Quiz</h2>
+        <p class="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">
+          Select a topic from Pages 284–285, pick your question count, and set the countdown timer per question.
+        </p>
+      </div>
+
+      <!-- Category Selection -->
+      <div class="mb-6">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
+          1. Select Category
+        </label>
+        <div id="categoryGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- Populated dynamically by JS -->
+        </div>
+      </div>
+
+      <!-- Settings Row: Question Count, Timer, Direction -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-7">
+        <!-- Timer Duration -->
+        <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/70">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
+            2. Time Per Question
+          </label>
+          <div class="grid grid-cols-2 gap-2" id="timerOptions">
+            <button type="button" data-time="10" class="timer-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">10 sec</button>
+            <button type="button" data-time="15" class="timer-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">15 sec</button>
+            <button type="button" data-time="20" class="timer-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">20 sec</button>
+            <button type="button" data-time="0" class="timer-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">No Limit</button>
+          </div>
+        </div>
+
+        <!-- Number of Questions -->
+        <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/70">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
+            3. Quiz Length
+          </label>
+          <div class="grid grid-cols-2 gap-2" id="lengthOptions">
+            <button type="button" data-len="15" class="len-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">15 Qs</button>
+            <button type="button" data-len="30" class="len-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">30 Qs</button>
+            <button type="button" data-len="50" class="len-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">50 Qs</button>
+            <button type="button" data-len="ALL" class="len-btn py-2 px-3 rounded-xl text-sm font-semibold border transition">All Words</button>
+          </div>
+        </div>
+
+        <!-- Question Format -->
+        <div class="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-700/70">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2.5">
+            4. Question Style
+          </label>
+          <div class="grid grid-cols-1 gap-2" id="modeOptions">
+            <button type="button" data-mode="def-to-word" class="mode-btn py-2 px-3 rounded-xl text-sm font-semibold border transition text-left flex items-center justify-between">
+              <span>Meaning → Word</span>
+              <span class="text-xs opacity-75">Exam Style</span>
+            </button>
+            <button type="button" data-mode="word-to-def" class="mode-btn py-2 px-3 rounded-xl text-sm font-semibold border transition text-left flex items-center justify-between">
+              <span>Word → Meaning</span>
+              <span class="text-xs opacity-75">Practice</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start Button -->
+      <button onclick="startQuiz()" class="w-full py-4 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-700 active:scale-[0.99] text-white font-bold text-base sm:text-lg shadow-lg shadow-indigo-600/25 transition flex items-center justify-center gap-2">
+        <span>Start Timed Quiz</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </button>
+    </section>
+
+    <!-- ==================== 2. ACTIVE QUIZ SCREEN ==================== -->
+    <section id="quizScreen" class="hidden space-y-4">
+      <!-- Top HUD: Progress, Score, Streak, Quit -->
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2">
+            <span id="questionCounter" class="px-3 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 font-bold text-sm">
+              Question 1 / 15
+            </span>
+            <span id="categoryBadge" class="px-2.5 py-1 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 text-xs font-semibold truncate max-w-[170px] sm:max-w-xs">
+              -ologist
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2 sm:gap-3">
+            <!-- Streak Badge -->
+            <div id="streakBadge" class="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-200/70 dark:border-amber-800/60 text-xs font-bold">
+              <span>🔥</span>
+              <span id="streakText">0</span>
+            </div>
+
+            <!-- Score Badge -->
+            <div class="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-200/70 dark:border-emerald-800/60 text-xs sm:text-sm font-bold">
+              <span>Score:</span>
+              <span id="scoreText">0</span>
+            </div>
+
+            <!-- Quit Button -->
+            <button onclick="confirmQuit()" class="px-2.5 py-1 rounded-xl text-xs font-semibold text-slate-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition">
+              Exit
+            </button>
+          </div>
+        </div>
+
+        <!-- Overall Quiz Progress Bar -->
+        <div class="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+          <div id="quizProgressBar" class="h-full bg-indigo-600 transition-all duration-300 rounded-full" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Main Question Card -->
+      <div id="questionCard" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-8 shadow-xl shadow-slate-200/40 dark:shadow-none">
+        <!-- Countdown Timer Bar & Digital Clock -->
+        <div id="timerContainer" class="mb-6">
+          <div class="flex items-center justify-between text-xs font-bold mb-1.5">
+            <span class="uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+                <path stroke-linecap="round" d="M12 6v6l4 2" />
+              </svg>
+              Time Remaining
+            </span>
+            <span id="timerText" class="text-sm font-extrabold tabular-nums text-emerald-600 dark:text-emerald-400">15.0s</span>
+          </div>
+          <div class="w-full h-3 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-0.5">
+            <div id="timerBar" class="h-full bg-emerald-500 rounded-full transition-all duration-75" style="width: 100%"></div>
+          </div>
+        </div>
+
+        <!-- Prompt Text -->
+        <div class="mb-6">
+          <p id="questionPromptLabel" class="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-1.5">
+            Identify the correct term for:
+          </p>
+          <h3 id="questionText" class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug text-slate-900 dark:text-white">
+            Loading question...
+          </h3>
+        </div>
+
+        <!-- 4 Multiple Choice Options -->
+        <div id="optionsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- Buttons injected by JS -->
+        </div>
+
+        <!-- Feedback Banner & Next Button -->
+        <div id="feedbackBanner" class="hidden mt-6 p-4 rounded-2xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-pop">
+          <div class="flex items-start gap-3">
+            <div id="feedbackIcon" class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 font-bold text-lg"></div>
+            <div>
+              <h4 id="feedbackTitle" class="font-bold text-sm sm:text-base">Correct!</h4>
+              <p id="feedbackDetail" class="text-xs sm:text-sm opacity-90 mt-0.5"></p>
+            </div>
+          </div>
+          <button id="nextBtn" onclick="nextQuestion()" class="px-5 py-2.5 rounded-xl font-bold text-sm shrink-0 bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 transition flex items-center justify-center gap-1.5">
+            <span>Next Question</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. RESULTS & REVIEW SCREEN ==================== -->
+    <section id="resultsScreen" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-8 shadow-xl shadow-slate-200/40 dark:shadow-none animate-pop">
+      <div class="text-center max-w-lg mx-auto mb-7">
+        <div id="resultEmoji" class="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/80 text-4xl flex items-center justify-center mx-auto mb-3 shadow-inner">
+          🏆
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Quiz Complete!</h2>
+        <p id="resultSubtitle" class="text-sm sm:text-base text-slate-500 dark:text-slate-400 mt-1">
+          Great work practicing your 12th English vocabulary!
+        </p>
+      </div>
+
+      <!-- Summary Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-7">
+        <div class="p-4 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200/70 dark:border-emerald-800/60 text-center">
+          <div class="text-xs font-bold uppercase text-emerald-700 dark:text-emerald-400">Score</div>
+          <div id="finalScore" class="text-2xl sm:text-3xl font-extrabold text-emerald-700 dark:text-emerald-300 mt-1">0/0</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200/70 dark:border-indigo-800/60 text-center">
+          <div class="text-xs font-bold uppercase text-indigo-700 dark:text-indigo-400">Accuracy</div>
+          <div id="finalAccuracy" class="text-2xl sm:text-3xl font-extrabold text-indigo-700 dark:text-indigo-300 mt-1">0%</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/70 dark:border-amber-800/60 text-center">
+          <div class="text-xs font-bold uppercase text-amber-700 dark:text-amber-400">Timed Out</div>
+          <div id="finalTimeouts" class="text-2xl sm:text-3xl font-extrabold text-amber-700 dark:text-amber-300 mt-1">0</div>
+        </div>
+        <div class="p-4 rounded-2xl bg-purple-50/80 dark:bg-purple-950/40 border border-purple-200/70 dark:border-purple-800/60 text-center">
+          <div class="text-xs font-bold uppercase text-purple-700 dark:text-purple-400">Best Streak</div>
+          <div id="finalStreak" class="text-2xl sm:text-3xl font-extrabold text-purple-700 dark:text-purple-300 mt-1">0</div>
+        </div>
+      </div>
+
+      <!-- Review Mistakes & Timeouts Section -->
+      <div class="mb-7">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-bold text-base sm:text-lg">Question Review</h3>
+          <div class="flex gap-1.5 text-xs">
+            <button onclick="filterReview('all')" id="revFilterAll" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900">All</button>
+            <button onclick="filterReview('missed')" id="revFilterMissed" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">Missed / Timed Out</button>
+          </div>
+        </div>
+
+        <div id="reviewList" class="max-h-80 overflow-y-auto space-y-2.5 pr-1">
+          <!-- Review items injected by JS -->
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button id="retryMissedBtn" onclick="retryMissedWords()" class="hidden flex-1 py-3.5 px-5 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm sm:text-base transition shadow-md shadow-amber-500/20">
+          Practice Missed Words Only
+        </button>
+        <button onclick="startQuiz()" class="flex-1 py-3.5 px-5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base transition shadow-md shadow-indigo-600/20">
+          Play Again (Same Settings)
+        </button>
+        <button onclick="returnToSetup()" class="flex-1 py-3.5 px-5 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 font-bold text-sm sm:text-base transition">
+          Change Category / Timer
+        </button>
+      </div>
+    </section>
+
+    <!-- Custom Modal for Quit Confirmation (No window.confirm used) -->
+    <div id="quitModal" class="hidden fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl max-w-sm w-full p-6 shadow-2xl animate-pop">
+        <h3 class="text-lg font-extrabold">Exit Current Quiz?</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1.5">
+          Your current progress and timer will be stopped and you'll return to the setup screen.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <button onclick="closeQuitModal()" class="flex-1 py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 font-semibold text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+            Resume
+          </button>
+          <button onclick="executeQuit()" class="flex-1 py-2.5 px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-semibold text-sm transition">
+            Exit Quiz
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // =========================================================================
+    // 1. COMPLETE QUESTION BANK (Pages 284 & 285 - Way to Success 12th English)
+    // =========================================================================
+    const VOCAB_BANK = [
+      // --- CATEGORY 1: -ologist (Specialists & Doctors) ---
+      { word: "Psychologist", def: "One who studies human mind and behaviour", cat: "ologist" },
+      { word: "Pathologist", def: "One who studies diseases", cat: "ologist" },
+      { word: "Ornithologist", def: "One who studies birds", cat: "ologist" },
+      { word: "Entomologist", def: "One who studies insects", cat: "ologist" },
+      { word: "Archaeologist", def: "One who studies artefacts and physical remains", cat: "ologist" },
+      { word: "Geologist", def: "One who studies matter that constitutes the earth", cat: "ologist" },
+      { word: "Sociologist", def: "One who studies functioning of human society", cat: "ologist" },
+      { word: "Linguist", def: "One who studies languages and their structure", cat: "ologist" },
+      { word: "Seismologist", def: "One who studies earthquakes", cat: "ologist" },
+      { word: "Herpetologist", def: "One who studies reptiles and amphibians", cat: "ologist" },
+      { word: "Meteorologist", def: "One who studies atmosphere, weather & climate", cat: "ologist" },
+      { word: "Dentist", def: "One who treats dental problems", cat: "ologist" },
+      { word: "Gynaecologist", def: "One who treats women diseases", cat: "ologist" },
+      { word: "Gastroenterologist", def: "One who treats stomach disorders", cat: "ologist" },
+      { word: "Dermatologist", def: "One who treats skin problems", cat: "ologist" },
+      { word: "Neurologist", def: "One who treats nervous system problems", cat: "ologist" },
+      { word: "Pulmonologist", def: "One who treats lung problems", cat: "ologist" },
+      { word: "Cardiologist", def: "One who treats heart problems", cat: "ologist" },
+      { word: "Nephrologist", def: "One who treats kidney diseases", cat: "ologist" },
+      { word: "Otolaryngologist", def: "One who treats ear, nose, and tongue problems", cat: "ologist" },
+      { word: "Ophthalmologist", def: "One who treats vision problems", cat: "ologist" },
+      { word: "Neonatologist", def: "One who treats critical infants", cat: "ologist" },
+      { word: "Zoologist", def: "One who studies animals (Zoology)", cat: "ologist" },
+      { word: "Otologist", def: "One who studies ears (Otology)", cat: "ologist" },
+      { word: "Petrologist", def: "One who studies rocks (Petrology)", cat: "ologist" },
+      { word: "Pyrologist", def: "One who studies fire (Pyrology)", cat: "ologist" },
+      { word: "Mycologist", def: "One who studies fungi (Mycology)", cat: "ologist" },
+      { word: "Hydrologist", def: "One who studies water (Hydrology)", cat: "ologist" },
+      { word: "Climatologist", def: "One who studies climate (Climatology)", cat: "ologist" },
+      { word: "Musicologist", def: "One who studies music (Musicology)", cat: "ologist" },
+      { word: "Cryptologist", def: "One who studies codes (Cryptology)", cat: "ologist" },
+      { word: "Hippologist", def: "One who studies horses (Hippology)", cat: "ologist" },
+      { word: "Astrologist", def: "One who studies stars (Astrology)", cat: "ologist" },
+      { word: "Myrmecologist", def: "One who studies ants (Myrmecology)", cat: "ologist" },
+      { word: "Pharmacologist", def: "One who studies drugs (Pharmacology)", cat: "ologist" },
+      { word: "Morphologist", def: "One who studies structure of organisms (Morphology)", cat: "ologist" },
+      { word: "Physiologist", def: "One who studies characteristics of organisms (Physiology)", cat: "ologist" },
+      { word: "Embryologist", def: "One who studies embryos (Embryology)", cat: "ologist" },
+      { word: "Cosmologist", def: "One who studies the universe (Cosmology)", cat: "ologist" },
+      { word: "Cosmetologist", def: "One who studies cosmetics (Cosmetology)", cat: "ologist" },
+      { word: "Volcanologist", def: "One who studies volcanoes (Volcanology)", cat: "ologist" },
+      { word: "Graphologist", def: "One who studies handwriting (Graphology)", cat: "ologist" },
+      { word: "Mammalogist", def: "One who studies mammals (Mammalogy)", cat: "ologist" },
+      { word: "Criminologist", def: "One who studies crime & criminals (Criminology)", cat: "ologist" },
+      { word: "Etymologist", def: "One who studies origin of a word (Etymology)", cat: "ologist" },
+      { word: "Ethnologist", def: "One who studies cultural heritage (Ethnology)", cat: "ologist" },
+      { word: "Ethologist", def: "One who studies animal behavior (Ethology)", cat: "ologist" },
+      { word: "Oncologist", def: "One who studies/treats cancer (Oncology)", cat: "ologist" },
+      { word: "Pediatrician", def: "One who treats children", cat: "ologist" },
+
+      // --- CATEGORY 2: -ism (Philosophies & Ideologies) ---
+      { word: "Patriotism", def: "Love of country and willingness to sacrifice for it", cat: "ism" },
+      { word: "Nationalism", def: "The doctrine that your country's interests are superior", cat: "ism" },
+      { word: "Feminism", def: "A doctrine that advocates equal rights for women", cat: "ism" },
+      { word: "Criticism", def: "A serious examination and judgment of something", cat: "ism" },
+      { word: "Amateurism", def: "Participating in sports as a hobby rather than for money", cat: "ism" },
+      { word: "Idealism", def: "Belief that the best possible concepts should be pursued", cat: "ism" },
+      { word: "Optimism", def: "The hopeful feeling that all is going to turn out well", cat: "ism" },
+      { word: "Optimist", def: "One who always believes that good things will happen", cat: "ism" },
+      { word: "Pessimist", def: "One who always believes that worst things will happen", cat: "ism" },
+      { word: "Barbarism", def: "A brutal, barbarous, savage act", cat: "ism" },
+      { word: "Absenteeism", def: "Habitual failure to be present at work", cat: "ism" },
+      { word: "Egocentrism", def: "Concern for your own interests & welfare", cat: "ism" },
+      { word: "Heroism", def: "Exceptional courage when facing danger", cat: "ism" },
+
+      // --- CATEGORY 3: -phobia & -mania (Fears & Strong Desires) ---
+      { word: "Photophobia / Photomania", def: "Fear of / strong desire for light", cat: "phobia" },
+      { word: "Hydrophobia / Hydromania", def: "Fear of / strong desire for water", cat: "phobia" },
+      { word: "Cynophobia / Cynomania", def: "Fear of / strong desire for dogs", cat: "phobia" },
+      { word: "Ailurophobia / Ailuromania", def: "Fear of / strong desire for cats", cat: "phobia" },
+      { word: "Anglophobia / Anglomania", def: "Fear of / strong desire for English", cat: "phobia" },
+      { word: "Hemophobia / Hemomania", def: "Fear of / strong desire for blood", cat: "phobia" },
+      { word: "Pyrophobia / Pyromania", def: "Fear of / strong desire for fire", cat: "phobia" },
+      { word: "Thanatophobia / Thanatomania", def: "Fear of / strong desire for death", cat: "phobia" },
+      { word: "Acrophobia / Acromania", def: "Fear of / strong desire for height", cat: "phobia" },
+      { word: "Rupophobia / Rupomania", def: "Fear of / strong desire for dirt", cat: "phobia" },
+      { word: "Gamophobia / Gamomania", def: "Fear of / strong desire for marriage", cat: "phobia" },
+      { word: "Bibliophobia / Bibliomania", def: "Fear of / strong desire for books", cat: "phobia" },
+      { word: "Xenophobia / Xenomania", def: "Fear of / strong desire for foreign things", cat: "phobia" },
+      { word: "Agoraphobia / Agoromania", def: "Fear of / strong desire for public places", cat: "phobia" },
+      { word: "Phonophobia / Phonomania", def: "Fear of / strong desire for sound", cat: "phobia" },
+      { word: "Thalassophobia / Thalassomania", def: "Fear of / strong desire for the sea", cat: "phobia" },
+      { word: "Zoophobia / Zoomania", def: "Fear of / strong desire for animals", cat: "phobia" },
+      { word: "Theophobia / Theomania", def: "Fear of / strong desire for God", cat: "phobia" },
+      { word: "Lalophobia / Lalomania", def: "Fear of / strong desire for speaking", cat: "phobia" },
+      { word: "Kleptophobia / Kleptomania", def: "Fear of / strong desire for stealing", cat: "phobia" },
+      { word: "Claustrophobia / Claustromania", def: "Fear of / strong desire for closed space", cat: "phobia" },
+      { word: "Brontophobia / Astraphobia", def: "Fear of thunder", cat: "phobia" },
+      { word: "Ochlophobia / Ochlomania", def: "Fear of / strong desire for crowd", cat: "phobia" },
+      { word: "Kakorrhaphiophobia", def: "Fear of failure", cat: "phobia" },
+      { word: "Ergophobia / Ergomania", def: "Fear of / strong desire for work", cat: "phobia" },
+      { word: "Dipsophobia / Dipsomania", def: "Fear of / strong desire for drinking alcohol", cat: "phobia" },
+      { word: "Squandermania", def: "Strong desire to spend money wastefully / lavishly", cat: "phobia" },
+      { word: "Autophobia / Monophobia", def: "Fear of being alone", cat: "phobia" },
+      { word: "Nyctophobia", def: "Fear of dark / night", cat: "phobia" },
+      { word: "Ombrophobia", def: "Fear of rain", cat: "phobia" },
+      { word: "Ophiophobia", def: "Fear of snakes", cat: "phobia" },
+      { word: "Phasmophobia", def: "Fear of ghosts", cat: "phobia" },
+      { word: "Antlophobia", def: "Fear of floods", cat: "phobia" },
+      { word: "Poinephobia", def: "Fear of punishment", cat: "phobia" },
+      { word: "Scolionophobia", def: "Fear of school", cat: "phobia" },
+      { word: "Tachophobia", def: "Fear of speed", cat: "phobia" },
+      { word: "Bathophobia", def: "Fear of depth", cat: "phobia" },
+      { word: "Katsaridaphobia", def: "Fear of cockroaches", cat: "phobia" },
+      { word: "Xylophobia", def: "Fear of forest", cat: "phobia" },
+
+      // --- CATEGORY 4: dys- & -cide (Difficulties & Killings) ---
+      { word: "Dysphasia", def: "Difficulty in speaking", cat: "dyscide" },
+      { word: "Dysgraphia", def: "Difficulty in writing", cat: "dyscide" },
+      { word: "Dyspepsia", def: "Difficulty in digestion", cat: "dyscide" },
+      { word: "Dyscalculia", def: "Difficulty in doing calculation", cat: "dyscide" },
+      { word: "Dyslexia", def: "Difficulty in reading", cat: "dyscide" },
+      { word: "Dyspraxia", def: "Difficulty in activities requiring coordination", cat: "dyscide" },
+      { word: "Insecticide", def: "Killing insects", cat: "dyscide" },
+      { word: "Fratricide", def: "Killing a brother", cat: "dyscide" },
+      { word: "Infanticide", def: "Killing an infant", cat: "dyscide" },
+      { word: "Feticide", def: "Killing a fetus", cat: "dyscide" },
+      { word: "Pesticide", def: "Killing pests", cat: "dyscide" },
+      { word: "Patricide", def: "Killing one's father", cat: "dyscide" },
+      { word: "Matricide", def: "Killing one's mother", cat: "dyscide" },
+      { word: "Homicide", def: "Killing another human", cat: "dyscide" },
+      { word: "Suicide", def: "Killing self", cat: "dyscide" },
+      { word: "Genocide", def: "Killing many people", cat: "dyscide" },
+
+      // --- CATEGORY 5: -ics & -ist (Studies & Ideals) ---
+      { word: "Aesthetics", def: "Study of beauty", cat: "icsist" },
+      { word: "Phonetics", def: "Study of speech sounds", cat: "icsist" },
+      { word: "Genetics", def: "Study of genes", cat: "icsist" },
+      { word: "Politics", def: "Study of activities of government", cat: "icsist" },
+      { word: "Statistics", def: "Study of data manipulation", cat: "icsist" },
+      { word: "Informatics", def: "Study of information processing", cat: "icsist" },
+      { word: "Aeronautics", def: "Study of air-craft", cat: "icsist" },
+      { word: "Numismatics", def: "Study of money and coins", cat: "icsist" },
+      { word: "Misogynist", def: "One who hates women", cat: "icsist" },
+      { word: "Antagonist", def: "One who opposes / rival", cat: "icsist" },
+      { word: "Protagonist", def: "Main character of a story", cat: "icsist" },
+      { word: "Socialist", def: "One following socialism", cat: "icsist" },
+      { word: "Sinologist", def: "One who studies Chinese language & history", cat: "icsist" },
+
+      // --- CATEGORY 6: -culture & -cracy/-archy (Farming & Governments) ---
+      { word: "Agriculture", def: "Raising of plants & livestock", cat: "culturecracy" },
+      { word: "Sylviculture", def: "Forest development", cat: "culturecracy" },
+      { word: "Horticulture", def: "Maintaining garden", cat: "culturecracy" },
+      { word: "Aviculture", def: "Breeding & rearing of birds", cat: "culturecracy" },
+      { word: "Apiculture", def: "Breeding & rearing of bees", cat: "culturecracy" },
+      { word: "Pisciculture", def: "Breeding & rearing of fish", cat: "culturecracy" },
+      { word: "Sericulture", def: "Breeding & rearing of silkworms", cat: "culturecracy" },
+      { word: "Vermiculture", def: "Breeding & rearing of earthworms", cat: "culturecracy" },
+      { word: "Monoculture", def: "Cultivation of a single crop", cat: "culturecracy" },
+      { word: "Olericulture", def: "Cultivation of vegetables", cat: "culturecracy" },
+      { word: "Arboriculture", def: "Cultivation of trees", cat: "culturecracy" },
+      { word: "Pomiculture", def: "Cultivation of fruit", cat: "culturecracy" },
+      { word: "Autocracy", def: "Government where one person has full power", cat: "culturecracy" },
+      { word: "Democracy", def: "Government elected by people", cat: "culturecracy" },
+      { word: "Bureaucracy", def: "Government by non-elected officials", cat: "culturecracy" },
+      { word: "Plutocracy", def: "Government by the wealthy", cat: "culturecracy" },
+      { word: "Aristocracy", def: "Government by privileged class", cat: "culturecracy" },
+      { word: "Monarchy", def: "Rule by king / queen", cat: "culturecracy" },
+      { word: "Hierarchy", def: "System arranged in levels (lowest to highest)", cat: "culturecracy" },
+      { word: "Oligarchy", def: "Control by a small group", cat: "culturecracy" },
+      { word: "Matriarchy", def: "Control given to women", cat: "culturecracy" },
+      { word: "Anarchy", def: "State where people don't obey rules", cat: "culturecracy" },
+
+      // --- CATEGORY 7: Other Words & -genarian (General Vocabulary & Ages) ---
+      { word: "Thespian", def: "One who acts in several roles", cat: "other" },
+      { word: "Teetotaller", def: "One who always refuses alcohol", cat: "other" },
+      { word: "Misanthrope", def: "One who wants to be aloof (dislikes humankind)", cat: "other" },
+      { word: "Polyglot", def: "One who is fluent in multiple languages", cat: "other" },
+      { word: "Bibliophile", def: "One who loves books", cat: "other" },
+      { word: "Philanthropist", def: "One who donates huge money to good causes", cat: "other" },
+      { word: "Sadist", def: "One who gets pleasure from suffering of others", cat: "other" },
+      { word: "Ambidextrous", def: "One who is able to use both hands effectively at the same time", cat: "other" },
+      { word: "Globetrotter", def: "One who wishes to travel all over the world", cat: "other" },
+      { word: "Trekking", def: "Long, difficult walking on hills, forests, etc. for pleasure", cat: "other" },
+      { word: "Indigenous", def: "Something that belongs to a particular region", cat: "other" },
+      { word: "Ambassador", def: "One who represents their country in a foreign country", cat: "other" },
+      { word: "Introvert", def: "One who prefers to be alone and does not mix with others", cat: "other" },
+      { word: "Extrovert", def: "One who enjoys being around and talking to people", cat: "other" },
+      { word: "Reserved", def: "One who is slow and unwilling to express opinions", cat: "other" },
+      { word: "Pilgrimage", def: "A visit to sacred places", cat: "other" },
+      { word: "Lexicographer", def: "One who compiles dictionaries", cat: "other" },
+      { word: "Migration", def: "Moving from one country to another", cat: "other" },
+      { word: "Conservative", def: "One who prefers traditional values", cat: "other" },
+      { word: "Antiquity", def: "Something related to ancient time", cat: "other" },
+      { word: "Universality", def: "Quality of being universal", cat: "other" },
+      { word: "Bankrupt", def: "One who is unable to pay debts", cat: "other" },
+      { word: "Secular", def: "Not connected to religion", cat: "other" },
+      { word: "Quadragenarian", def: "A person in their 40s (40 to 49 years old)", cat: "other" },
+      { word: "Quinquagenarian", def: "A person in their 50s (50 to 59 years old)", cat: "other" },
+      { word: "Sexagenarian", def: "A person in their 60s (60 to 69 years old)", cat: "other" },
+      { word: "Septuagenarian", def: "A person in their 70s (70 to 79 years old)", cat: "other" },
+      { word: "Octogenarian", def: "A person in their 80s (80 to 89 years old)", cat: "other" },
+      { word: "Nonagenarian", def: "A person who is between 90 to 99 years old", cat: "other" },
+      { word: "Centenarian", def: "A person who is 100 or more years of age (> 100)", cat: "other" }
+    ];
+
+    const CATEGORIES = [
+      { id: "ALL", label: "All Words (Mega Quiz)", desc: "Complete syllabus from Pages 284 & 285" },
+      { id: "ologist", label: "-ologist (Specialists & Doctors)", desc: "49 specialists & medical experts" },
+      { id: "ism", label: "-ism (Philosophies & Ideologies)", desc: "13 ideologies, attitudes & traits" },
+      { id: "phobia", label: "-phobia & -mania (Fears & Desires)", desc: "39 phobias & strong desires" },
+      { id: "dyscide", label: "dys- & -cide (Difficulties & Killings)", desc: "16 learning difficulties & killings" },
+      { id: "icsist", label: "-ics & -ist (Studies & Ideals)", desc: "13 fields of study & followers" },
+      { id: "culturecracy", label: "-culture & -cracy/-archy", desc: "22 farming types & governments" },
+      { id: "other", label: "Other Words & -genarian", desc: "30 general terms & age groups" }
+    ];
+
+    // =========================================================================
+    // 2. APPLICATION STATE & CONFIGURATION
+    // =========================================================================
+    let selectedCategory = "ALL";
+    let selectedTimer = 15; // seconds per question (0 = unlimited)
+    let selectedLength = "15"; // "15", "30", "50", or "ALL"
+    let selectedMode = "def-to-word"; // "def-to-word" or "word-to-def"
+    let soundEnabled = true;
+
+    // Active Quiz State
+    let quizQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let bestStreak = 0;
+    let timeoutCount = 0;
+    let historyLog = [];
+    let isAnswered = false;
+
+    // Timer Engine
+    let timerInterval = null;
+    let timeRemaining = 0;
+    let questionStartTime = 0;
+
+    // Tone.js Synth for audio cues
+    let synth = null;
+
+    function playTone(type) {
+      if (!soundEnabled || typeof Tone === "undefined") return;
+      try {
+        if (!synth) {
+          synth = new Tone.PolySynth(Tone.Synth).toDestination();
+          synth.volume.value = -10;
+        }
+        if (Tone.context.state !== "running") {
+          Tone.start();
+        }
+        const now = Tone.now();
+        if (type === "correct") {
+          synth.triggerAttackRelease(["C5", "E5", "G5"], "16n", now);
+        } else if (type === "wrong") {
+          synth.triggerAttackRelease(["E3", "Bb2"], "8n", now);
+        } else if (type === "timeout") {
+          synth.triggerAttackRelease(["D3", "C3"], "4n", now);
+        } else if (type === "tick") {
+          synth.triggerAttackRelease("A5", "32n", now);
+        }
+      } catch (e) {
+        // Ignore audio errors if blocked by browser autoplay policy
+      }
+    }
+
+    // =========================================================================
+    // 3. INITIALIZATION & SETUP UI
+    // =========================================================================
+    function initSetupUI() {
+      const grid = document.getElementById("categoryGrid");
+      grid.innerHTML = "";
+
+      CATEGORIES.forEach(cat => {
+        const count = cat.id === "ALL"
+          ? VOCAB_BANK.length
+          : VOCAB_BANK.filter(w => w.cat === cat.id).length;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.dataset.cat = cat.id;
+        btn.onclick = () => {
+          selectedCategory = cat.id;
+          updateSetupSelections();
+        };
+        btn.className = "cat-btn p-3.5 rounded-2xl border text-left transition flex items-center justify-between gap-3";
+        btn.innerHTML = `
+          <div>
+            <div class="font-bold text-sm sm:text-base">${cat.label}</div>
+            <div class="text-xs opacity-75 mt-0.5">${cat.desc}</div>
+          </div>
+          <span class="px-2.5 py-1 rounded-xl text-xs font-extrabold bg-slate-200/70 dark:bg-slate-700/70 shrink-0">
+            ${count}
+          </span>
+        `;
+        grid.appendChild(btn);
+      });
+
+      // Attach listeners to timer buttons
+      document.querySelectorAll(".timer-btn").forEach(btn => {
+        btn.onclick = () => {
+          selectedTimer = parseInt(btn.dataset.time, 10);
+          updateSetupSelections();
+        };
+      });
+
+      // Attach listeners to length buttons
+      document.querySelectorAll(".len-btn").forEach(btn => {
+        btn.onclick = () => {
+          selectedLength = btn.dataset.len;
+          updateSetupSelections();
+        };
+      });
+
+      // Attach listeners to mode buttons
+      document.querySelectorAll(".mode-btn").forEach(btn => {
+        btn.onclick = () => {
+          selectedMode = btn.dataset.mode;
+          updateSetupSelections();
+        };
+      });
+
+      updateSetupSelections();
+    }
+
+    function updateSetupSelections() {
+      const activeClasses = [
+        "border-indigo-600",
+        "bg-indigo-50/90",
+        "text-indigo-900",
+        "dark:bg-indigo-950/70",
+        "dark:text-indigo-100",
+        "dark:border-indigo-500",
+        "ring-2",
+        "ring-indigo-500/20"
+      ];
+      const inactiveClasses = [
+        "border-slate-200",
+        "dark:border-slate-800",
+        "bg-white",
+        "dark:bg-slate-900",
+        "hover:border-slate-300",
+        "dark:hover:border-slate-700"
+      ];
+
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        const isSelected = btn.dataset.cat === selectedCategory;
+        btn.classList.remove(...activeClasses, ...inactiveClasses);
+        btn.classList.add(...(isSelected ? activeClasses : inactiveClasses));
+      });
+
+      document.querySelectorAll(".timer-btn").forEach(btn => {
+        const isSelected = parseInt(btn.dataset.time, 10) === selectedTimer;
+        btn.classList.remove(...activeClasses, ...inactiveClasses);
+        btn.classList.add(...(isSelected ? activeClasses : inactiveClasses));
+      });
+
+      document.querySelectorAll(".len-btn").forEach(btn => {
+        const isSelected = btn.dataset.len === selectedLength;
+        btn.classList.remove(...activeClasses, ...inactiveClasses);
+        btn.classList.add(...(isSelected ? activeClasses : inactiveClasses));
+      });
+
+      document.querySelectorAll(".mode-btn").forEach(btn => {
+        const isSelected = btn.dataset.mode === selectedMode;
+        btn.classList.remove(...activeClasses, ...inactiveClasses);
+        btn.classList.add(...(isSelected ? activeClasses : inactiveClasses));
+      });
+    }
+
+    // =========================================================================
+    // 4. QUIZ GENERATION & GAMEPLAY ENGINE
+    // =========================================================================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function generateQuestions(customPool = null) {
+      let pool = customPool
+        ? [...customPool]
+        : (selectedCategory === "ALL"
+            ? [...VOCAB_BANK]
+            : VOCAB_BANK.filter(item => item.cat === selectedCategory));
+
+      pool = shuffleArray(pool);
+
+      if (!customPool && selectedLength !== "ALL") {
+        const limit = parseInt(selectedLength, 10);
+        pool = pool.slice(0, Math.min(limit, pool.length));
+      }
+
+      return pool.map(target => {
+        // Smart distractors: prioritize words from the same category
+        let sameCatPool = VOCAB_BANK.filter(item => item.cat === target.cat && item.word !== target.word);
+        let fallbackPool = VOCAB_BANK.filter(item => item.cat !== target.cat && item.word !== target.word);
+
+        let distractors = shuffleArray(sameCatPool).slice(0, 3);
+        if (distractors.length < 3) {
+          distractors = distractors.concat(shuffleArray(fallbackPool).slice(0, 3 - distractors.length));
+        }
+
+        const choices = shuffleArray([target, ...distractors]);
+        return {
+          target,
+          choices
+        };
+      });
+    }
+
+    function startQuiz(customPool = null) {
+      clearInterval(timerInterval);
+      quizQuestions = generateQuestions(customPool);
+      currentIndex = 0;
+      score = 0;
+      streak = 0;
+      bestStreak = 0;
+      timeoutCount = 0;
+      historyLog = [];
+
+      document.getElementById("setupScreen").classList.add("hidden");
+      document.getElementById("resultsScreen").classList.add("hidden");
+      document.getElementById("quizScreen").classList.remove("hidden");
+
+      renderQuestion();
+    }
+
+    function getCategoryLabel(catId) {
+      const found = CATEGORIES.find(c => c.id === catId);
+      return found ? found.label : catId;
+    }
+
+    function renderQuestion() {
+      isAnswered = false;
+      clearInterval(timerInterval);
+
+      const qObj = quizQuestions[currentIndex];
+      const target = qObj.target;
+
+      // Update HUD
+      document.getElementById("questionCounter").textContent = `Question ${currentIndex + 1} / ${quizQuestions.length}`;
+      document.getElementById("categoryBadge").textContent = getCategoryLabel(target.cat);
+      document.getElementById("scoreText").textContent = score;
+      document.getElementById("streakText").textContent = streak;
+
+      const pct = (currentIndex / quizQuestions.length) * 100;
+      document.getElementById("quizProgressBar").style.width = `${pct}%`;
+
+      // Update Prompt
+      const promptLabel = document.getElementById("questionPromptLabel");
+      const questionText = document.getElementById("questionText");
+
+      if (selectedMode === "def-to-word") {
+        promptLabel.textContent = "Identify the correct word for this meaning:";
+        questionText.textContent = `“${target.def}”`;
+      } else {
+        promptLabel.textContent = "Select the correct meaning of:";
+        questionText.textContent = target.word;
+      }
+
+      // Render 4 Options
+      const container = document.getElementById("optionsContainer");
+      container.innerHTML = "";
+      const letters = ["A", "B", "C", "D"];
+
+      qObj.choices.forEach((choice, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.dataset.word = choice.word;
+        btn.onclick = () => handleAnswer(choice);
+        btn.className = "option-btn group w-full p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 hover:border-indigo-500 hover:bg-indigo-50/60 dark:hover:bg-indigo-950/40 text-left transition-all flex items-center gap-3.5 active:scale-[0.99]";
+
+        const labelText = selectedMode === "def-to-word" ? choice.word : choice.def;
+
+        btn.innerHTML = `
+          <span class="option-letter w-8 h-8 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-extrabold text-xs flex items-center justify-center shrink-0 group-hover:border-indigo-400 group-hover:text-indigo-600 transition">
+            ${letters[idx]}
+          </span>
+          <span class="font-semibold text-sm sm:text-base leading-snug">${labelText}</span>
+        `;
+        container.appendChild(btn);
+      });
+
+      // Hide feedback banner
+      const banner = document.getElementById("feedbackBanner");
+      banner.classList.add("hidden");
+
+      // Configure Timer
+      const timerContainer = document.getElementById("timerContainer");
+      if (selectedTimer === 0) {
+        timerContainer.classList.add("hidden");
+      } else {
+        timerContainer.classList.remove("hidden");
+        startQuestionTimer();
+      }
+    }
+
+    function startQuestionTimer() {
+      const totalMs = selectedTimer * 1000;
+      questionStartTime = performance.now();
+      let lastSecond = selectedTimer;
+
+      updateTimerUI(selectedTimer, 100);
+
+      timerInterval = setInterval(() => {
+        if (isAnswered) {
+          clearInterval(timerInterval);
+          return;
+        }
+
+        const elapsed = performance.now() - questionStartTime;
+        const remainingMs = Math.max(0, totalMs - elapsed);
+        const remainingSec = remainingMs / 1000;
+        const percentage = (remainingMs / totalMs) * 100;
+
+        // Tick sound in final 3 seconds
+        const ceilSec = Math.ceil(remainingSec);
+        if (ceilSec <= 3 && ceilSec > 0 && ceilSec < lastSecond) {
+          lastSecond = ceilSec;
+          playTone("tick");
+        }
+
+        updateTimerUI(remainingSec, percentage);
+
+        if (remainingMs <= 0) {
+          clearInterval(timerInterval);
+          handleTimeout();
+        }
+      }, 50);
+    }
+
+    function updateTimerUI(secondsLeft, pct) {
+      const timerText = document.getElementById("timerText");
+      const timerBar = document.getElementById("timerBar");
+
+      timerText.textContent = `${secondsLeft.toFixed(1)}s`;
+      timerBar.style.width = `${pct}%`;
+
+      // Color shifts: Green (>50%) -> Amber (25-50%) -> Red (<25%)
+      timerBar.classList.remove("bg-emerald-500", "bg-amber-500", "bg-rose-500");
+      timerText.classList.remove("text-emerald-600", "dark:text-emerald-400", "text-amber-600", "dark:text-amber-400", "text-rose-600", "dark:text-rose-400");
+
+      if (pct > 50) {
+        timerBar.classList.add("bg-emerald-500");
+        timerText.classList.add("text-emerald-600", "dark:text-emerald-400");
+      } else if (pct > 25) {
+        timerBar.classList.add("bg-amber-500");
+        timerText.classList.add("text-amber-600", "dark:text-amber-400");
+      } else {
+        timerBar.classList.add("bg-rose-500");
+        timerText.classList.add("text-rose-600", "dark:text-rose-400");
+      }
+    }
+
+    function handleAnswer(selectedChoice) {
+      if (isAnswered) return;
+      isAnswered = true;
+      clearInterval(timerInterval);
+
+      const qObj = quizQuestions[currentIndex];
+      const target = qObj.target;
+      const isCorrect = selectedChoice.word === target.word;
+
+      if (isCorrect) {
+        score++;
+        streak++;
+        if (streak > bestStreak) bestStreak = streak;
+        playTone("correct");
+      } else {
+        streak = 0;
+        playTone("wrong");
+        document.getElementById("questionCard").classList.add("animate-shake");
+        setTimeout(() => document.getElementById("questionCard").classList.remove("animate-shake"), 400);
+      }
+
+      historyLog.push({
+        target,
+        userChoice: selectedChoice,
+        status: isCorrect ? "correct" : "wrong"
+      });
+
+      highlightOptions(target.word, selectedChoice.word);
+      showFeedback(isCorrect ? "correct" : "wrong", target, selectedChoice);
+    }
+
+    function handleTimeout() {
+      if (isAnswered) return;
+      isAnswered = true;
+      streak = 0;
+      timeoutCount++;
+      playTone("timeout");
+
+      const qObj = quizQuestions[currentIndex];
+      const target = qObj.target;
+
+      document.getElementById("questionCard").classList.add("animate-shake");
+      setTimeout(() => document.getElementById("questionCard").classList.remove("animate-shake"), 400);
+
+      historyLog.push({
+        target,
+        userChoice: null,
+        status: "timeout"
+      });
+
+      highlightOptions(target.word, null);
+      showFeedback("timeout", target, null);
+    }
+
+    function highlightOptions(correctWord, chosenWord) {
+      document.querySelectorAll(".option-btn").forEach(btn => {
+        btn.disabled = true;
+        const w = btn.dataset.word;
+
+        btn.classList.remove(
+          "border-slate-200",
+          "dark:border-slate-800",
+          "hover:border-indigo-500",
+          "hover:bg-indigo-50/60",
+          "dark:hover:bg-indigo-950/40"
+        );
+
+        if (w === correctWord) {
+          btn.classList.add(
+            "border-emerald-500",
+            "bg-emerald-50",
+            "text-emerald-950",
+            "dark:bg-emerald-950/70",
+            "dark:text-emerald-100",
+            "dark:border-emerald-500"
+          );
+          btn.querySelector(".option-letter").classList.add("bg-emerald-500", "text-white", "border-emerald-500");
+        } else if (chosenWord && w === chosenWord) {
+          btn.classList.add(
+            "border-rose-500",
+            "bg-rose-50",
+            "text-rose-950",
+            "dark:bg-rose-950/70",
+            "dark:text-rose-100",
+            "dark:border-rose-500"
+          );
+          btn.querySelector(".option-letter").classList.add("bg-rose-500", "text-white", "border-rose-500");
+        } else {
+          btn.classList.add("opacity-50", "border-slate-200", "dark:border-slate-800");
+        }
+      });
+
+      // Update live HUD
+      document.getElementById("scoreText").textContent = score;
+      document.getElementById("streakText").textContent = streak;
+    }
+
+    function showFeedback(status, target, userChoice) {
+      const banner = document.getElementById("feedbackBanner");
+      const icon = document.getElementById("feedbackIcon");
+      const title = document.getElementById("feedbackTitle");
+      const detail = document.getElementById("feedbackDetail");
+      const nextBtn = document.getElementById("nextBtn");
+
+      banner.classList.remove(
+        "hidden",
+        "bg-emerald-50", "border-emerald-200", "text-emerald-900", "dark:bg-emerald-950/50", "dark:border-emerald-800", "dark:text-emerald-200",
+        "bg-rose-50", "border-rose-200", "text-rose-900", "dark:bg-rose-950/50", "dark:border-rose-800", "dark:text-rose-200",
+        "bg-amber-50", "border-amber-200", "text-amber-900", "dark:bg-amber-950/50", "dark:border-amber-800", "dark:text-amber-200"
+      );
+
+      if (status === "correct") {
+        banner.classList.add("bg-emerald-50", "border-emerald-200", "text-emerald-900", "dark:bg-emerald-950/50", "dark:border-emerald-800", "dark:text-emerald-200");
+        icon.className = "w-9 h-9 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 font-bold text-lg";
+        icon.textContent = "✓";
+        title.textContent = "Correct!";
+        detail.textContent = `${target.word} — ${target.def}`;
+      } else if (status === "timeout") {
+        banner.classList.add("bg-amber-50", "border-amber-200", "text-amber-900", "dark:bg-amber-950/50", "dark:border-amber-800", "dark:text-amber-200");
+        icon.className = "w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0 font-bold text-lg";
+        icon.textContent = "⏰";
+        title.textContent = "Time's Up!";
+        detail.textContent = `Correct Answer: ${target.word} (${target.def})`;
+      } else {
+        banner.classList.add("bg-rose-50", "border-rose-200", "text-rose-900", "dark:bg-rose-950/50", "dark:border-rose-800", "dark:text-rose-200");
+        icon.className = "w-9 h-9 rounded-xl bg-rose-500 text-white flex items-center justify-center shrink-0 font-bold text-lg";
+        icon.textContent = "✕";
+        title.textContent = "Incorrect";
+        detail.textContent = `Correct Answer: ${target.word} (${target.def})`;
+      }
+
+      nextBtn.querySelector("span").textContent =
+        currentIndex + 1 >= quizQuestions.length ? "See Results" : "Next Question";
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < quizQuestions.length) {
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    // =========================================================================
+    // 5. RESULTS & REVIEW SCREEN
+    // =========================================================================
+    function showResults() {
+      clearInterval(timerInterval);
+      document.getElementById("quizScreen").classList.add("hidden");
+      document.getElementById("resultsScreen").classList.remove("hidden");
+
+      const total = quizQuestions.length;
+      const accuracy = Math.round((score / total) * 100);
+
+      document.getElementById("finalScore").textContent = `${score}/${total}`;
+      document.getElementById("finalAccuracy").textContent = `${accuracy}%`;
+      document.getElementById("finalTimeouts").textContent = timeoutCount;
+      document.getElementById("finalStreak").textContent = bestStreak;
+
+      const emoji = document.getElementById("resultEmoji");
+      const subtitle = document.getElementById("resultSubtitle");
+      if (accuracy >= 90) {
+        emoji.textContent = "🏆";
+        subtitle.textContent = "Outstanding! You've mastered these 12th English words.";
+      } else if (accuracy >= 70) {
+        emoji.textContent = "🌟";
+        subtitle.textContent = "Great job! Review the few missed terms below to hit 100%.";
+      } else if (accuracy >= 50) {
+        emoji.textContent = "📚";
+        subtitle.textContent = "Good effort! Practice the missed words to boost your speed.";
+      } else {
+        emoji.textContent = "💪";
+        subtitle.textContent = "Keep practicing! Try a longer timer or practice by category.";
+      }
+
+      // Show "Practice Missed Words Only" button if there are missed/timed-out questions
+      const missedItems = historyLog.filter(item => item.status !== "correct");
+      const retryMissedBtn = document.getElementById("retryMissedBtn");
+      if (missedItems.length > 0) {
+        retryMissedBtn.classList.remove("hidden");
+        retryMissedBtn.textContent = `Practice ${missedItems.length} Missed Word${missedItems.length > 1 ? "s" : ""}`;
+      } else {
+        retryMissedBtn.classList.add("hidden");
+      }
+
+      filterReview("all");
+    }
+
+    function filterReview(mode) {
+      const btnAll = document.getElementById("revFilterAll");
+      const btnMissed = document.getElementById("revFilterMissed");
+
+      if (mode === "all") {
+        btnAll.className = "px-2.5 py-1 rounded-lg font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900";
+        btnMissed.className = "px-2.5 py-1 rounded-lg font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300";
+      } else {
+        btnMissed.className = "px-2.5 py-1 rounded-lg font-semibold bg-slate-900 text-white dark:bg-white dark:text-slate-900";
+        btnAll.className = "px-2.5 py-1 rounded-lg font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300";
+      }
+
+      const list = document.getElementById("reviewList");
+      list.innerHTML = "";
+
+      const items = mode === "all"
+        ? historyLog
+        : historyLog.filter(entry => entry.status !== "correct");
+
+      if (items.length === 0) {
+        list.innerHTML = `<div class="p-6 text-center text-sm text-slate-500 bg-slate-50 dark:bg-slate-800/40 rounded-2xl">No missed questions! Flawless run! 🎉</div>`;
+        return;
+      }
+
+      items.forEach(entry => {
+        const div = document.createElement("div");
+        let badgeHTML = "";
+        let borderClass = "";
+
+        if (entry.status === "correct") {
+          badgeHTML = `<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">Correct</span>`;
+          borderClass = "border-slate-200 dark:border-slate-800";
+        } else if (entry.status === "timeout") {
+          badgeHTML = `<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Timed Out</span>`;
+          borderClass = "border-amber-200 dark:border-amber-900/60 bg-amber-50/30 dark:bg-amber-950/20";
+        } else {
+          badgeHTML = `<span class="px-2 py-0.5 rounded-md text-[11px] font-bold bg-rose-100 text-rose-800 dark:bg-rose-950 dark:text-rose-300">Wrong (${entry.userChoice.word})</span>`;
+          borderClass = "border-rose-200 dark:border-rose-900/60 bg-rose-50/30 dark:bg-rose-950/20";
+        }
+
+        div.className = `p-3.5 rounded-2xl border ${borderClass} flex flex-col sm:flex-row sm:items-center justify-between gap-2`;
+        div.innerHTML = `
+          <div>
+            <div class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${entry.target.word}</div>
+            <div class="text-xs text-slate-500 dark:text-slate-400">${entry.target.def}</div>
+          </div>
+          <div class="shrink-0">${badgeHTML}</div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function retryMissedWords() {
+      const missedWords = historyLog
+        .filter(entry => entry.status !== "correct")
+        .map(entry => entry.target);
+      if (missedWords.length > 0) {
+        startQuiz(missedWords);
+      }
+    }
+
+    function returnToSetup() {
+      clearInterval(timerInterval);
+      document.getElementById("quizScreen").classList.add("hidden");
+      document.getElementById("resultsScreen").classList.add("hidden");
+      document.getElementById("setupScreen").classList.remove("hidden");
+    }
+
+    // =========================================================================
+    // 6. UTILITY CONTROLS (Theme, Sound, Quit Modal, Keyboard Shortcuts)
+    // =========================================================================
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle("dark");
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById("soundOnIcon").classList.toggle("hidden", !soundEnabled);
+      document.getElementById("soundOffIcon").classList.toggle("hidden", soundEnabled);
+    }
+
+    function confirmQuit() {
+      document.getElementById("quitModal").classList.remove("hidden");
+    }
+
+    function closeQuitModal() {
+      document.getElementById("quitModal").classList.add("hidden");
+    }
+
+    function executeQuit() {
+      closeQuitModal();
+      returnToSetup();
+    }
+
+    // Keyboard shortcuts: 1-4 / A-D to select option, Enter/Space for Next
+    document.addEventListener("keydown", (e) => {
+      if (document.getElementById("quizScreen").classList.contains("hidden")) return;
+      if (!document.getElementById("quitModal").classList.contains("hidden")) return;
+
+      const key = e.key.toUpperCase();
+      if (!isAnswered) {
+        const map = { "1": 0, "A": 0, "2": 1, "B": 1, "3": 2, "C": 2, "4": 3, "D": 3 };
+        if (key in map) {
+          const btns = document.querySelectorAll(".option-btn");
+          if (btns[map[key]]) btns[map[key]].click();
+        }
+      } else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        nextQuestion();
+      }
+    });
+
+    // Respect system dark mode on load
+    if (window.match
+```
